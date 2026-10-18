@@ -69,6 +69,44 @@
             {% endfor %}
         </table>
 
+<!-- ============================================ -->
+<!-- AI ANOMALY DETECTION SECTION -->
+<!-- ============================================ -->
+{% if has_anomalies %}
+<div style="margin-top: 40px; padding: 24px; background: #fef2f2; border: 2px solid #fca5a5; border-radius: 12px;">
+    <h2 style="color: #991b1b; margin-top: 0;">🤖 AI Detected Anomalies</h2>
+    <p><strong>{{ anomaly_summary.total_anomalies }}</strong> unusual patterns found 
+       ({{ anomaly_summary.error_count }} errors, {{ anomaly_summary.warn_count }} warnings)</p>
+    
+    <table style="width: 100%; border-collapse: collapse; margin-top: 16px;">
+        <tr>
+            <th style="text-align: left; padding: 8px; background: #fecaca;">Timestamp</th>
+            <th style="text-align: left; padding: 8px; background: #fecaca;">Level</th>
+            <th style="text-align: left; padding: 8px; background: #fecaca;">Message</th>
+            <th style="text-align: left; padding: 8px; background: #fecaca;">Confidence</th>
+        </tr>
+        {% for log in anomaly_summary.examples %}
+        <tr>
+            <td style="padding: 8px; border-bottom: 1px solid #fca5a5;">{{ log.timestamp }}</td>
+            <td style="padding: 8px; border-bottom: 1px solid #fca5a5;">
+                <span class="badge {{ log.level }}">{{ log.level }}</span>
+            </td>
+            <td style="padding: 8px; border-bottom: 1px solid #fca5a5;">{{ log.message }}</td>
+            <td style="padding: 8px; border-bottom: 1px solid #fca5a5;">
+                {{ "%.2f"|format(log.anomaly_score) }}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</div>
+{% else %}
+<div style="margin-top: 40px; padding: 24px; background: #f0fdf4; border: 2px solid #86efac; border-radius: 12px;">
+    <h2 style="color: #166534; margin-top: 0;">✅ All Clear</h2>
+    <p>No significant anomalies detected. Logs appear to follow normal patterns.</p>
+</div>
+{% endif %}
+<!-- End AI Section -->
         <p><a href="/">Upload another file</a></p>
     </div>
 </body>

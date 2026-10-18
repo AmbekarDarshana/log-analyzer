@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 from parser import parse_file, parse_line
 from db import save_logs, get_all_logs, get_log_counts
+from ml_model import detect_anomalies, get_anomaly_summary
 
 app = Flask(__name__)
 
@@ -16,31 +17,30 @@ def about():
     """About page."""
     return render_template('about.html')  # We'll create this template soon
 
-
 @app.route('/upload', methods=['POST'])
 def upload():
-    """
-    Handles log file upload.
-    Flow: receive file → parse lines → save to DB → show results.
-    """
-    # 1. Get the uploaded file
+    """Handles upload → parse → store → analyze with AI → show results."""
+    
     uploaded_file = request.files['logfile']
     
     if not uploaded_file.filename:
         return redirect(url_for('home'))
     
-    # 2. Read and parse
+    # Parse
     content = uploaded_file.read().decode('utf-8')
     raw_lines = content.splitlines()
     logs = parse_file(raw_lines)
     
-    # 3. Save to MongoDB
+    # Save to DB
     saved_count = save_logs(logs)
     
-    # 4. Get updated counts from DB
+    # Run AI Anomaly Detection
+    anomalous, normal, model = detect_anomalies(logs)
+    summary = get_anomaly_summary(anomalous)
+    
+    # Get overall counts
     counts = get_log_counts()
     
-    # 5. Render the same results template, now showing DB-backed data
     return render_template(
         'results.html',
         filename=uploaded_file.filename,
@@ -49,9 +49,13 @@ def upload():
         count_info=counts['INFO'],
         count_warn=counts['WARN'],
         count_error=counts['ERROR'],
-        total_saved=saved_count
+        total_saved=saved_count,
+        
+        # NEW: AI Results
+        anomalies=anomalous,
+        anomaly_summary=summary,
+        has_anomalies=len(anomalous) > 0
     )
-
 
 @app.route('/dashboard')
 def dashboard():
