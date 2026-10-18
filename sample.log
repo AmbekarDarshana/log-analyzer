@@ -1,0 +1,10 @@
+2026-10-17 10:01:12 INFO User darsh logged in
+2026-10-17 10:01:45 INFO Page /home loaded
+2026-10-17 10:02:03 ERROR Database connection failed
+2026-10-17 10:02:09 WARN Retry attempt 1
+2026-10-17 10:02:15 ERROR Database connection failed
+2026-10-17 10:02:30 INFO User darsh logged out
+2026-10-17 10:03:01 WARN Slow response detected
+2026-10-17 10:03:22 ERROR Timeout while calling payment service
+2026-10-17 10:04:10 INFO Health check passed
+2026-10-17 10:04:55 INFO New user registered

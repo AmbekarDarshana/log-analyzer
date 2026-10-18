@@ -1,0 +1,16 @@
+# Virtual environment - never upload this
+venv/
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# Environment secrets (passwords, database keys)
+.env
+
+# Editor settings
+.vscode/
+.idea/
+
+# Uploaded files
+uploads/

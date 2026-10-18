@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Log Analyzer</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f5f9;
+            margin: 0;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 800px;
+            margin: 80px auto;
+            padding: 40px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #1e293b;
+        }
+
+        p {
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        .status {
+            margin: 25px 0;
+            padding: 15px;
+            color: #166534;
+            background-color: #dcfce7;
+            border-radius: 8px;
+        }
+
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>AI-Powered Log Analyzer</h1>
+
+        <p>
+            This application will upload, analyze and detect unusual
+            patterns in application log files.
+        </p>
+
+        <div class="status">
+            ✅ Application is running successfully
+        </div>
+
+        <h2>Upload a log file</h2>
+
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <input type="file" name="logfile" required>
+            <button type="submit">Upload and Analyze</button>
+        </form>
+        
+        <a href="/about">About this project</a>
+    </div>
+</body>
+</html>
