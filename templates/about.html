@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About - Log Analyzer</title>
+    <style>
+        body { font-family: Arial; background: #f1f5f9; margin: 0; padding: 40px; }
+        .container { max-width: 700px; margin: 0 auto; background: white; padding: 30px; border-radius: 12px; }
+        h1 { color: #1e293b; }
+        p { color: #475569; line-height: 1.8; }
+        a { color: #2563eb; }
+        .tech-stack { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+        .badge { padding: 6px 14px; border-radius: 20px; font-size: 13px; background: #e2e8f0; color: #334155; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>About This Project</h1>
+        
+        <p>This is an <strong>AI-Powered Log Analyzer</strong> built as part of 
+        an MCA DevOps mini-project.</p>
+
+        <p><strong>The Problem:</strong> Application servers generate thousands of 
+        log lines per hour. Manually reading them to find errors, security threats, 
+        or performance issues is impossible.</p>
+
+        <p><strong>The Solution:</strong> Upload any log file. This application 
+        parses it, stores it in MongoDB, uses machine learning (Isolation Forest) 
+        to detect anomalies, and displays results on a live dashboard.</p>
+
+        <h3>Tech Stack</h3>
+        <div class="tech-stack">
+            <span class="badge">Python / Flask</span>
+            <span class="badge">MongoDB</span>
+            <span class="badge">scikit-learn</span>
+            <span class="badge">Docker</span>
+            <span class="badge">GitHub Actions</span>
+            <span class="badge">AWS EC2</span>
+            <span class="badge">Prometheus / Grafana</span>
+        </div>
+
+        <br><br>
+        <a href="/">← Back to Home</a>
+    </div>
+</body>
+</html>
