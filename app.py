@@ -1,10 +1,21 @@
 from flask import Flask, render_template, request, redirect, url_for
 from parser import parse_file, parse_line
-from db import save_logs, get_all_logs, get_log_counts
+from db import save_logs, get_all_logs, get_log_counts, clear_all_logs
 from ml_model import detect_anomalies, get_anomaly_summary
 
 app = Flask(__name__)
 
+@app.route('/clear')
+def clear():
+    """Deletes all logs from the database. Useful for testing."""
+    deleted = clear_all_logs()
+    return f"""
+    <div style="font-family: Arial; padding: 40px;">
+        <h2>Database cleared</h2>
+        <p>Deleted {deleted} log entries.</p>
+        <a href="/">Go to upload page</a>
+    </div>
+    """
 
 @app.route('/')
 def home():

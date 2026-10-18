@@ -45,7 +45,7 @@ def get_all_logs():
     
     # find() with no arguments = "give me everything"
     # sort by _id in descending order (-1) = newest first
-    return list(collection.find().sort("_id", -1))
+    return list(collection.find().sort("_id", -1).limit(200))
 
 
 def get_log_counts():
